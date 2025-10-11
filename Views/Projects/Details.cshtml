@@ -1,0 +1,25 @@
+﻿@model COMP2139_Lab1.Models.Project
+
+@{
+    ViewData["Title"] = "Project Details 💖";
+    Layout = "_Layout";
+}
+
+<div class="text-center mt-5">
+    <h1 style="color:#ff4d94;">Project Details 💻</h1>
+</div>
+
+<div class="mt-4" style="max-width:600px; margin:auto; color:#ff4d94;">
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Owner:</strong> @Model.Owner</p>
+    <p><strong>Start Date:</strong> @Model.StartDate.ToShortDateString()</p>
+    <p><strong>End Date:</strong> @Model.EndDate.ToShortDateString()</p>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-light border rounded-pill px-4" 
+       style="color:#ff4d94; border-color:#ff4d94;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
