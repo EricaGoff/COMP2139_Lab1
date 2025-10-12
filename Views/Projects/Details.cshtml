@@ -17,7 +17,41 @@
     <p><strong>End Date:</strong> @Model.EndDate.ToShortDateString()</p>
 </div>
 
-<div class="text-center mt-3">
+<hr class="my-4" style="border-color:#ffb3c6; width:70%; margin:auto;" />
+
+<div class="text-center mt-4">
+    <h3 style="color:#ff4d94;">Tasks for this Project 🌸</h3>
+</div>
+
+<div class="mt-3" style="max-width:700px; margin:auto;">
+    @if (Model.ProjectTasks != null && Model.ProjectTasks.Any())
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead style="background-color:#ffe6f2;">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var task in Model.ProjectTasks)
+            {
+                <tr>
+                    <td>@task.Title</td>
+                    <td>@task.Description</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center" style="color:#ff4d94;">No tasks yet 💭 — add one on the 
+            <a asp-controller="Tasks" asp-action="Create" style="color:#ff66a3;">Tasks page</a>.</p>
+    }
+</div>
+
+<div class="text-center mt-3 mb-5">
     <a asp-action="Index" class="btn btn-light border rounded-pill px-4" 
        style="color:#ff4d94; border-color:#ff4d94;">
         <i class="fa-solid fa-arrow-left"></i> Back to Projects

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<COMP2139_Lab1.Models.ProjectTask>
+
+<h2>Tasks 💖</h2>
+
+<p><a class="btn btn-primary" asp-action="Create">Add New Task</a></p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Project</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.Title</td>
+            <td>@task.Description</td>
+            <td>@task.Project?.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
