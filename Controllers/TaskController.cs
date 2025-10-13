@@ -28,16 +28,19 @@ namespace COMP2139_Lab1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ProjectTask task)
+        public IActionResult Create(ProjectTask projectTask)
         {
             if (ModelState.IsValid)
             {
-                _context.ProjectTasks.Add(task);
+                // ✅ Fix for PostgreSQL timestamp issue
+                projectTask.StartDate = DateTime.SpecifyKind(projectTask.StartDate, DateTimeKind.Utc);
+                projectTask.EndDate = DateTime.SpecifyKind(projectTask.EndDate, DateTimeKind.Utc);
+
+                _context.ProjectTasks.Add(projectTask);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Projects = _context.Projects.ToList();
-            return View(task);
+            return View(projectTask);
         }
     }
 }

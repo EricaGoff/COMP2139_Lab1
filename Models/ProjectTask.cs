@@ -15,5 +15,7 @@ namespace COMP2139_Lab1.Models
         public int ProjectId { get; set; }
         
         public Project? Project { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

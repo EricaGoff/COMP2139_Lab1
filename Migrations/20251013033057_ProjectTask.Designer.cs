@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace COMP2139_Lab1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251012162733_AddProjectTasks")]
-    partial class AddProjectTasks
+    [Migration("20251013033057_FixProjectTaskDates")]
+    partial class FixProjectTaskDates
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,8 +67,14 @@ namespace COMP2139_Lab1.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()

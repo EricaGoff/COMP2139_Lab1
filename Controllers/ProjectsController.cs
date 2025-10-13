@@ -14,35 +14,35 @@ namespace COMP2139_Lab1.Controllers
         {
             _context = context;
         }
-
-        // GET: Projects
+        
         public IActionResult Index()
         {
             var projects = _context.Projects.ToList();
             return View(projects);
         }
-
-        // GET: Projects/Create
+        
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: Projects/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Project project)
         {
             if (ModelState.IsValid)
             {
+                // ✅ Ensure UTC timestamps before saving
+                project.StartDate = DateTime.SpecifyKind(project.StartDate, DateTimeKind.Utc);
+                project.EndDate = DateTime.SpecifyKind(project.EndDate, DateTimeKind.Utc);
+
                 _context.Projects.Add(project);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(project);
         }
-
-        // GET: Projects/Details/5
+        
         public IActionResult Details(int id)
         {
             var project = _context.Projects
