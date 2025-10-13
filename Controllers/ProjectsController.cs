@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using COMP2139_Lab1.Data;
 using COMP2139_Lab1.Models;
-using Microsoft.EntityFrameworkCore; // 👈 Add this for Include()
+using Microsoft.EntityFrameworkCore; 
 using System.Linq;
 
 namespace COMP2139_Lab1.Controllers
@@ -32,7 +32,7 @@ namespace COMP2139_Lab1.Controllers
         {
             if (ModelState.IsValid)
             {
-                // ✅ Ensure UTC timestamps before saving
+                
                 project.StartDate = DateTime.SpecifyKind(project.StartDate, DateTimeKind.Utc);
                 project.EndDate = DateTime.SpecifyKind(project.EndDate, DateTimeKind.Utc);
 
