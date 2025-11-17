@@ -28,7 +28,7 @@ else
             <th>Owner</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th></th>
+            <th>Actions</th> <!-- Changed from empty to "Actions" -->
         </tr>
         </thead>
         <tbody>
@@ -41,9 +41,21 @@ else
                 <td>@project.EndDate.ToShortDateString()</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@project.Id" 
-                       class="btn btn-sm btn-light border rounded-pill" 
+                       class="btn btn-sm btn-light border rounded-pill me-1" 
                        style="color:#ff4d94; border-color:#ff4d94;">
                         <i class="fa-solid fa-eye"></i> View
+                    </a>
+
+                    <a asp-action="Edit" asp-route-id="@project.Id" 
+                       class="btn btn-sm btn-warning border rounded-pill me-1" 
+                       style="color:white; background-color:#ff4d94; border-color:#ff4d94;">
+                        <i class="fa-solid fa-pen"></i> Edit
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@project.Id" 
+                       class="btn btn-sm btn-danger border rounded-pill" 
+                       style="color:white; background-color:#ff4d94; border-color:#ff4d94;">
+                        <i class="fa-solid fa-trash"></i> Delete
                     </a>
                 </td>
             </tr>

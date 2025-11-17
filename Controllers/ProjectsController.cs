@@ -54,5 +54,49 @@ namespace COMP2139_Lab1.Controllers
 
             return View(project);
         }
+        public IActionResult Edit(int id)
+        {
+            var project = _context.Projects.Find(id);
+            if (project == null) return NotFound();
+            return View(project);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Project project)
+        {
+            if (id != project.Id) return NotFound();
+            if (ModelState.IsValid)
+            {
+                project.StartDate = DateTime.SpecifyKind(project.StartDate, DateTimeKind.Utc);
+                project.EndDate = DateTime.SpecifyKind(project.EndDate, DateTimeKind.Utc);
+
+                _context.Projects.Update(project);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(project);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var project = _context.Projects.Find(id);
+            if (project == null) return NotFound();
+            return View(project);
+        }
+
+
+        [HttpPost, ActionName("DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var project = _context.Projects.Find(id);
+            if (project != null)
+            {
+                _context.Projects.Remove(project);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
